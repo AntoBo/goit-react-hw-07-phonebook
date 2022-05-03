@@ -3,9 +3,10 @@ import { nanoid } from 'nanoid';
 import FormNewContact from './FormNewContact/FormNewContact';
 import Section from './Section/Section';
 import ContactsList from './ContactsList/ContactsList';
+import Notification from './Notification/Notification';
 
 export class App extends Component {
-  state = { contacts: [], name: '', number: '' };
+  state = { contacts: [], name: '', number: '', filter: '' };
 
   handleSubmit = e => {
     e.preventDefault();
@@ -42,7 +43,11 @@ export class App extends Component {
           />
         </Section>
         <Section title={'Contacts'}>
-          <ContactsList contacts={contacts} />
+          {contacts.length ? (
+            <ContactsList contacts={contacts} />
+          ) : (
+            <Notification message={'Phonebook is empty, add someone'} />
+          )}
         </Section>
       </>
     );
