@@ -11,14 +11,22 @@ export class App extends Component {
     e.preventDefault();
     console.log('handleSubmit!');
     this.setState(prev => ({
-      contacts: [...prev.contacts, { name: e.target.name.value, id: nanoid() }],
+      contacts: [
+        ...prev.contacts,
+        {
+          name: e.target.name.value,
+          number: e.target.number.value,
+          id: nanoid(),
+        },
+      ],
     }));
     //reset form
-    this.setState({ name: '' });
+    this.setState({ name: '', number: '' });
   };
 
   handleChange = e => {
-    this.setState({ name: e.target.value });
+    console.dir(e.target.name);
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   render() {
@@ -28,6 +36,7 @@ export class App extends Component {
         <Section title={'Phonebook'}>
           <FormNewContact
             name={name}
+            number={number}
             handleSubmit={this.handleSubmit}
             handleChange={this.handleChange}
           />
