@@ -1,23 +1,28 @@
 import { Component } from 'react';
+import { nanoid } from 'nanoid';
 import FormNewContact from './FormNewContact/FormNewContact';
 import Section from './Section/Section';
+import ContactsList from './ContactsList/ContactsList';
 
 export class App extends Component {
   state = { contacts: [], name: '', number: '' };
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log(e);
+    console.log('handleSubmit!');
+    this.setState(prev => ({
+      contacts: [...prev.contacts, { name: e.target.name.value, id: nanoid() }],
+    }));
+    //reset form
+    this.setState({ name: '' });
   };
 
   handleChange = e => {
-    console.log(e);
-
     this.setState({ name: e.target.value });
   };
 
   render() {
-    const { name, number } = this.state;
+    const { name, number, contacts } = this.state;
     return (
       <>
         <Section title={'Phonebook'}>
@@ -27,7 +32,9 @@ export class App extends Component {
             handleChange={this.handleChange}
           />
         </Section>
-        <Section title={'Contacts'}></Section>
+        <Section title={'Contacts'}>
+          <ContactsList contacts={contacts} />
+        </Section>
       </>
     );
   }
