@@ -15,26 +15,22 @@ export class App extends Component {
       { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
-    name: '',
-    number: '',
+    // name: '',
+    // number: '',
     filter: '',
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
-    console.log('handleSubmit!');
+  addContact = (name, number) => {
     this.setState(prev => ({
       contacts: [
         ...prev.contacts,
         {
-          name: e.target.name.value,
-          number: e.target.number.value,
+          name,
+          number,
           id: nanoid(),
         },
       ],
     }));
-    //reset form
-    this.setState({ name: '', number: '' });
   };
 
   handleChange = e => {
@@ -42,15 +38,15 @@ export class App extends Component {
   };
 
   render() {
-    const { name, number, filter, contacts } = this.state;
+    const { filter, contacts } = this.state;
     return (
       <>
         <Section title={'Phonebook'}>
           <FormNewContact
-            name={name}
-            number={number}
-            handleSubmit={this.handleSubmit}
-            handleChange={this.handleChange}
+            // name={name}
+            // number={number}
+            addContact={this.addContact}
+            // handleChange={this.handleChange}
           />
         </Section>
         <Section title={'Contacts'}>
