@@ -11,10 +11,23 @@ export class FormNewContact extends Component {
     this.setState({ name: '', number: '' });
   }
 
+  hasName(name) {
+    const contacts = this.props.contacts;
+    if (contacts.some(contact => contact.name === name)) {
+      alert('This contact name already exists!');
+      return true;
+    }
+    return false;
+  }
+
   handleSubmit = e => {
+    const name = e.target.name.value;
+    const number = e.target.number.value;
     e.preventDefault();
+    //check if name alrady exists
+    if (this.hasName(name)) return;
     //use App method as prop
-    this.props.addContact(e.target.name.value, e.target.number.value);
+    this.props.addContact(name, number);
     this.resetForm();
   };
 
@@ -54,36 +67,3 @@ export class FormNewContact extends Component {
 }
 
 export default FormNewContact;
-// const FormNewContact = ({ name, number, handleSubmit, handleChange }) => {
-//   return (
-//     <form onSubmit={e => handleSubmit(e)}>
-//       <label>
-//         Name
-//         <input
-//           type="text"
-//           name="name"
-//           value={name}
-//           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-//           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-//           required
-//           onChange={e => handleChange(e)}
-//         />
-//       </label>
-//       <label>
-//         Phone
-//         <input
-//           type="tel"
-//           name="number"
-//           value={number}
-//           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-//           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-//           required
-//           onChange={e => handleChange(e)}
-//         />
-//       </label>
-//       <button type="submit">Add contact</button>
-//     </form>
-//   );
-// };
-
-// export default FormNewContact;
