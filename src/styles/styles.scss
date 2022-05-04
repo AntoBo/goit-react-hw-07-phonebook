@@ -15,7 +15,11 @@ button {
 }
 
 li {
+  margin: 0;
   margin-bottom: 5px;
+  max-width: 300px;
+  display: flex;
+  justify-content: space-between;
 }
 
 h2 {

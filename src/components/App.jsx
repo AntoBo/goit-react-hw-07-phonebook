@@ -32,6 +32,12 @@ export class App extends Component {
     }));
   };
 
+  removeContact = id => {
+    this.setState(prev => ({
+      contacts: [...prev.contacts.filter(contact => contact.id !== id)],
+    }));
+  };
+
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -50,7 +56,11 @@ export class App extends Component {
                 searchValue={filter}
                 handleChange={this.handleChange}
               />
-              <ContactsList searchValue={filter} contacts={contacts} />
+              <ContactsList
+                searchValue={filter}
+                contacts={contacts}
+                removeContact={this.removeContact}
+              />
             </>
           ) : (
             <Notification message={'Phonebook is empty, add someone'} />

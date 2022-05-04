@@ -1,5 +1,5 @@
 import ContactsItem from '../ContactsItem/ContactsItem';
-const ContactsList = ({ contacts, searchValue }) => {
+const ContactsList = ({ contacts, searchValue, removeContact }) => {
   let filteredContacts = [];
   if (!searchValue) {
     //do nothing
@@ -16,7 +16,15 @@ const ContactsList = ({ contacts, searchValue }) => {
   return (
     <ul>
       {filteredContacts.map(({ name, number, id }) => {
-        return <ContactsItem name={name} number={number} key={id} />;
+        return (
+          <ContactsItem
+            name={name}
+            number={number}
+            key={id}
+            id={id}
+            removeContact={removeContact}
+          />
+        );
       })}
     </ul>
   );
