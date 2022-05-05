@@ -75,7 +75,7 @@ export class App extends Component {
               />
               <ContactsList
                 // searchValue={filter}
-                contacts={this.filterContacts()}
+                contacts={this.filterContacts()} //how it fires???
                 removeContact={this.removeContact}
               />
             </>
