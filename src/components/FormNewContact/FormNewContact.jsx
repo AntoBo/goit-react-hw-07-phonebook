@@ -13,7 +13,11 @@ export class FormNewContact extends Component {
 
   hasName(name) {
     const contacts = this.props.contacts;
-    if (contacts.some(contact => contact.name === name)) {
+    if (
+      contacts.some(
+        contact => contact.name.toLowerCase() === name.toLowerCase()
+      )
+    ) {
       alert('This contact name already exists!');
       return true;
     }
