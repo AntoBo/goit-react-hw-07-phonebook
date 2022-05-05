@@ -19,6 +19,23 @@ export class App extends Component {
     filter: '',
   };
 
+  filterContacts() {
+    console.log('filterContacts acts');
+    const { filter, contacts } = this.state;
+    // let filteredContacts = [];
+    if (!filter) {
+      //do nothing
+      return [...contacts];
+    } else {
+      //filter with filter
+      return [
+        ...contacts.filter(contact =>
+          contact.name.toLowerCase().includes(filter.toLowerCase())
+        ),
+      ];
+    }
+  }
+
   addContact = (name, number) => {
     this.setState(prev => ({
       contacts: [
@@ -57,8 +74,8 @@ export class App extends Component {
                 handleChange={this.handleChange}
               />
               <ContactsList
-                searchValue={filter}
-                contacts={contacts}
+                // searchValue={filter}
+                contacts={this.filterContacts()}
                 removeContact={this.removeContact}
               />
             </>

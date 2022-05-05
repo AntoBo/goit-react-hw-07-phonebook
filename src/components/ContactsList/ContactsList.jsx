@@ -1,21 +1,21 @@
 import ContactsItem from '../ContactsItem/ContactsItem';
-const ContactsList = ({ contacts, searchValue, removeContact }) => {
-  let filteredContacts = [];
-  if (!searchValue) {
-    //do nothing
-    filteredContacts = [...contacts];
-  } else {
-    //filter with searchValue
-    filteredContacts = [
-      ...contacts.filter(contact =>
-        contact.name.toLowerCase().includes(searchValue.toLowerCase())
-      ),
-    ];
-  }
+const ContactsList = ({ contacts, removeContact }) => {
+  // let filteredContacts = [];
+  // if (!searchValue) {
+  //   //do nothing
+  //   filteredContacts = [...contacts];
+  // } else {
+  //   //filter with searchValue
+  //   filteredContacts = [
+  //     ...contacts.filter(contact =>
+  //       contact.name.toLowerCase().includes(searchValue.toLowerCase())
+  //     ),
+  //   ];
+  // }
 
   return (
     <ul>
-      {filteredContacts.map(({ name, number, id }) => {
+      {contacts.map(({ name, number, id }) => {
         return (
           <ContactsItem
             name={name}
