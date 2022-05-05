@@ -36,17 +36,14 @@ export class App extends Component {
 
   filterContacts() {
     const { filter, contacts } = this.state;
-    if (!filter) {
-      //do nothing
-      return [...contacts];
-    } else {
-      //filter with filter
+    if (filter) {
       return [
         ...contacts.filter(contact =>
           contact.name.toLowerCase().includes(filter.toLowerCase())
         ),
       ];
     }
+    return contacts;
   }
 
   addContact = (name, number) => {
