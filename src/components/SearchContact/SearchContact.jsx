@@ -8,7 +8,7 @@ const SearchContact = ({ searchValue, handleChange }) => {
           name="filter"
           value={searchValue}
           required
-          onChange={e => handleChange(e)}
+          onChange={handleChange}
         />
       </label>
     </div>
