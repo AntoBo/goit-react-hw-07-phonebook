@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 // import { Component } from 'react';
 import { nanoid } from 'nanoid';
 import '../styles/styles.scss';
@@ -46,6 +46,17 @@ const App = () => {
   const handleChange = e => {
     setFilter(e.target.value);
   };
+
+  useEffect(() => {
+    const localContacts = JSON.parse(localStorage.getItem('contacts'));
+    if (localContacts) {
+      setContacts(localContacts);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+  }, [contacts]);
 
   return (
     <>
