@@ -1,4 +1,9 @@
-const SearchContact = ({ searchValue, handleChange }) => {
+import { useDispatch, useSelector } from 'react-redux';
+import { setFilter } from 'redux/filter/filterAction';
+
+const SearchContact = () => {
+  const searchValue = useSelector(state => state.filter);
+  const dispatch = useDispatch();
   return (
     <div className="searchWrap">
       <label>
@@ -8,7 +13,7 @@ const SearchContact = ({ searchValue, handleChange }) => {
           name="filter"
           value={searchValue}
           required
-          onChange={handleChange}
+          onChange={e => dispatch(setFilter(e.target.value))}
         />
       </label>
     </div>

@@ -1,81 +1,29 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-// import { Component } from 'react';
-import { nanoid } from 'nanoid';
 import '../styles/styles.scss';
 import FormNewContact from './FormNewContact/FormNewContact';
 import Section from './Section/Section';
 import ContactsList from './ContactsList/ContactsList';
 import Notification from './Notification/Notification';
 import SearchContact from './SearchContact/SearchContact';
+import { useSelector } from 'react-redux';
 
 const App = () => {
-  const [contacts, setContacts] = useState([
-    { id: 'id-0', name: 'wer', number: '232459-12-56' },
-    { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-    { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-    { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-    { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-  ]);
-  const [filter, setFilter] = useState('');
-
-  const filterContacts = () => {
-    if (filter)
-      return contacts.filter(contact =>
-        contact.name.toLowerCase().includes(filter.toLowerCase())
-      );
-
-    return contacts;
-  };
-
-  const addContact = ({ name, number }) => {
-    setContacts(prev => [
-      ...prev,
-      {
-        name,
-        number,
-        id: nanoid(),
-      },
-    ]);
-  };
-
-  const removeContact = id => {
-    setContacts(prev => prev.filter(contact => contact.id !== id));
-  };
-
-  const handleChange = e => {
-    setFilter(e.target.value);
-  };
-
-  useEffect(() => {
-    const localContacts = JSON.parse(localStorage.getItem('contacts'));
-    if (localContacts) {
-      setContacts(localContacts);
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
+  const contacts = useSelector(state => state.contacts);
+  // const dispatch = useDispatch();
 
   return (
     <>
       <Section title={'Phonebook'}>
-        <FormNewContact contacts={contacts} addContact={addContact} />
+        <FormNewContact />
       </Section>
       <Section title={'Contacts'}>
-        {contacts.length ? (
+        {contacts.length > 0 ? (
           <>
-            <SearchContact searchValue={filter} handleChange={handleChange} />
-            <ContactsList
-              searchValue={filter}
-              contacts={filterContacts()} //how it fires???
-              removeContact={removeContact}
-            />
+            <SearchContact />
           </>
         ) : (
           <Notification message={'Phonebook is empty, add someone'} />
         )}
+        <ContactsList />
       </Section>
     </>
   );

@@ -1,9 +1,14 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from 'redux/contacts/contactsAction';
+import { generate } from 'shortid';
 
-const FormNewContact = ({ contacts, addContact }) => {
+const FormNewContact = () => {
+  const contacts = useSelector(state => state.contacts);
+  const dispath = useDispatch();
+
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  // state = { name: '', number: '' };
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -14,14 +19,11 @@ const FormNewContact = ({ contacts, addContact }) => {
     if (name === 'number') {
       setNumber(value);
     }
-
-    // this.setState({ [e.target.name]: e.target.value });
   };
 
   const resetForm = () => {
     setName('');
     setNumber('');
-    // this.setState({ name: '', number: '' });
   };
 
   const hasName = name => {
@@ -42,8 +44,7 @@ const FormNewContact = ({ contacts, addContact }) => {
     e.preventDefault();
     //check if name alrady exists
     if (hasName(name)) return;
-    //use App method as prop
-    addContact({ name, number });
+    dispath(addContact({ name, number, id: generate() }));
     resetForm();
   };
 
