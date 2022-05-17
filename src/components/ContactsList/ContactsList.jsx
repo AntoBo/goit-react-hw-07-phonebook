@@ -21,6 +21,7 @@ const ContactsList = () => {
     if (localContacts && localContacts.length > 0) {
       dispatch(setContacts(localContacts));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   //upd LS on render
@@ -37,7 +38,6 @@ const ContactsList = () => {
             number={number}
             key={id}
             id={id}
-            // removeContact={removeContact}
             removeContact={() => dispatch(removeContact(id))}
           />
         );

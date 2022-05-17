@@ -8,7 +8,6 @@ import { useSelector } from 'react-redux';
 
 const App = () => {
   const contacts = useSelector(state => state.contacts);
-  // const dispatch = useDispatch();
 
   return (
     <>
