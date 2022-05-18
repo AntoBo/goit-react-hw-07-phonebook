@@ -16,13 +16,13 @@ const ContactsList = () => {
   };
 
   //upd store from LS on mount
-  useEffect(() => {
-    const localContacts = JSON.parse(localStorage.getItem('contacts'));
-    if (localContacts && localContacts.length > 0) {
-      dispatch(setContacts(localContacts));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   // const localContacts = JSON.parse(localStorage.getItem('contacts'));
+  //   // if (localContacts && localContacts.length > 0) {
+  //   //   dispatch(setContacts(localContacts));
+  //   // }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   //upd LS on render
   useEffect(() => {
