@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeContact } from 'redux/contacts/contactsAction';
+import { getContacts, removeContact } from 'redux/contacts/contactsOperation';
 import ContactsItem from '../ContactsItem/ContactsItem';
 const ContactsList = () => {
   const { contacts, filter } = useSelector(state => state);
@@ -15,19 +15,14 @@ const ContactsList = () => {
     return contacts;
   };
 
-  //upd store from LS on mount
-  // useEffect(() => {
-  //   // const localContacts = JSON.parse(localStorage.getItem('contacts'));
-  //   // if (localContacts && localContacts.length > 0) {
-  //   //   dispatch(setContacts(localContacts));
-  //   // }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+  useEffect(() => {
+    dispatch(getContacts());
+  }, []);
 
   //upd LS on render
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
+  // useEffect(() => {
+  //   // localStorage.setItem('contacts', JSON.stringify(contacts));
+  // }, [contacts]);
 
   return (
     <ul>

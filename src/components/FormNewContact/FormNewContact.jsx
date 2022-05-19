@@ -1,7 +1,7 @@
+import Loading from 'components/Loading/Loading';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contacts/contactsAction';
-import { generate } from 'shortid';
+import { addContact } from 'redux/contacts/contactsOperation';
 
 const FormNewContact = () => {
   const contacts = useSelector(state => state.contacts);
@@ -44,12 +44,12 @@ const FormNewContact = () => {
     e.preventDefault();
     //check if name alrady exists
     if (hasName(name)) return;
-    dispath(addContact({ name, number, id: generate() }));
+    dispath(addContact({ name, number }));
     resetForm();
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="form" onSubmit={handleSubmit}>
       <label>
         Name
         <input
@@ -75,6 +75,7 @@ const FormNewContact = () => {
         />
       </label>
       <button type="submit">Add contact</button>
+      <Loading />
     </form>
   );
 };
