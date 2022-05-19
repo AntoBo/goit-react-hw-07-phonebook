@@ -15,11 +15,16 @@ button {
 }
 
 li {
+  position: relative;
   margin: 0;
   margin-bottom: 5px;
   max-width: 300px;
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  // justify-content: space-between;
+  & span {
+    min-width: 65%;
+  }
 }
 
 h2 {
@@ -39,14 +44,18 @@ input {
 }
 
 .form {
+  position: relative;
+
   display: flex;
-  // justify-content: center;
   align-items: center;
+  justify-content: start;
+  max-width: 530px;
 }
 
 .loader {
+  position: absolute;
+  right: -5%;
   display: inline-block;
-  margin-left: 10px;
 
   width: 13px;
   height: 13px;

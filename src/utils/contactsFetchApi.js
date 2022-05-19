@@ -3,7 +3,7 @@ import axios from 'axios';
 axios.defaults.baseURL = 'https://6284dcbc3060bbd347407afd.mockapi.io/contacts';
 
 export const fetchContacts = async () => {
-  const res = await axios.get();
+  const res = await axios.get('?sortBy=createdAt&order=asc');
   //   console.log(res.data);
   return res.data;
 };

@@ -4,7 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contacts/contactsOperation';
 
 const FormNewContact = () => {
-  const contacts = useSelector(state => state.contacts);
+  const { contacts, isLoading } = useSelector(state => state);
+  const [showLoader, setShowLoader] = useState(false);
+
   const dispath = useDispatch();
 
   const [name, setName] = useState('');
@@ -39,6 +41,7 @@ const FormNewContact = () => {
   };
 
   const handleSubmit = e => {
+    setShowLoader(true);
     const name = e.target.name.value;
     const number = e.target.number.value;
     e.preventDefault();
@@ -75,7 +78,8 @@ const FormNewContact = () => {
         />
       </label>
       <button type="submit">Add contact</button>
-      <Loading />
+      {/* <Loading /> */}
+      {isLoading && showLoader && <Loading />}
     </form>
   );
 };

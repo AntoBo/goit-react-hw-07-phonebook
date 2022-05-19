@@ -19,11 +19,6 @@ const ContactsList = () => {
     dispatch(getContacts());
   }, []);
 
-  //upd LS on render
-  // useEffect(() => {
-  //   // localStorage.setItem('contacts', JSON.stringify(contacts));
-  // }, [contacts]);
-
   return (
     <ul>
       {filterContacts().map(({ name, number, id }) => {
