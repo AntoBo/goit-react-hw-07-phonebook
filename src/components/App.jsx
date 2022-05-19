@@ -5,9 +5,10 @@ import ContactsList from './ContactsList/ContactsList';
 import Notification from './Notification/Notification';
 import SearchContact from './SearchContact/SearchContact';
 import { useSelector } from 'react-redux';
+import Loading from './Loading/Loading';
 
 const App = () => {
-  const contacts = useSelector(state => state.contacts);
+  const { contacts, isLoading } = useSelector(state => state);
 
   return (
     <>
@@ -15,13 +16,20 @@ const App = () => {
         <FormNewContact />
       </Section>
       <Section title={'Contacts'}>
-        {contacts.length > 0 ? (
-          <>
-            <SearchContact />
-          </>
-        ) : (
-          <Notification message={'Phonebook is empty, add someone'} />
-        )}
+        {
+          contacts.length > 0 ? (
+            <>
+              <SearchContact />
+            </>
+          ) : isLoading ? (
+            <Loading />
+          ) : (
+            <Notification message={'Phonebook is empty, add someone'} />
+          )
+
+          // <Notification message={'Phonebook is empty, add someone'} />
+          // <Loading />
+        }
         <ContactsList />
       </Section>
     </>
