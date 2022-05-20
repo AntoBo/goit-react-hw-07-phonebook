@@ -8,6 +8,7 @@ const store = configureStore({
     contacts: contactsReducer,
     filter: filterReducer,
     isLoading: loadingReducer,
+    error: null,
   },
 });
 

@@ -60,7 +60,7 @@ const FormNewContact = () => {
       <label>
         Name
         <input
-          autocomplete="off"
+          autoComplete="off"
           type="text"
           name="name"
           value={name}
@@ -73,7 +73,7 @@ const FormNewContact = () => {
       <label>
         Phone
         <input
-          autocomplete="off"
+          autoComplete="off"
           type="tel"
           name="number"
           value={number}
