@@ -16,20 +16,15 @@ const App = () => {
         <FormNewContact />
       </Section>
       <Section title={'Contacts'}>
-        {
-          contacts.length > 0 ? (
-            <>
-              <SearchContact />
-            </>
-          ) : isLoading ? (
-            <Loading />
-          ) : (
-            <Notification message={'Phonebook is empty, add someone'} />
-          )
-
-          // <Notification message={'Phonebook is empty, add someone'} />
-          // <Loading />
-        }
+        {contacts.length > 0 ? (
+          <>
+            <SearchContact />
+          </>
+        ) : isLoading ? (
+          <Loading />
+        ) : (
+          <Notification message={'Phonebook is empty, add someone'} />
+        )}
         <ContactsList />
       </Section>
     </>
