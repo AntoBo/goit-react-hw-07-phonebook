@@ -15,4 +15,5 @@ export const loadingReducer = createReducer(false, {
   [addContact.pending]: () => true,
   [addContact.fulfilled]: () => false,
   [addContact.rejected]: () => false,
+  //
 });
