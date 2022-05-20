@@ -1,5 +1,5 @@
 import Loading from 'components/Loading/Loading';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contacts/contactsOperation';
 
@@ -51,11 +51,16 @@ const FormNewContact = () => {
     resetForm();
   };
 
+  useEffect(() => {
+    setShowLoader(false);
+  }, [contacts]);
+
   return (
     <form className="form" onSubmit={handleSubmit}>
       <label>
         Name
         <input
+          autocomplete="off"
           type="text"
           name="name"
           value={name}
@@ -68,6 +73,7 @@ const FormNewContact = () => {
       <label>
         Phone
         <input
+          autocomplete="off"
           type="tel"
           name="number"
           value={number}
